@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'digitaltwin.hielkevanderwal.nl',
-    'dtihsite-production.up.railway.app'
+    'dtihsite-production.up.railway.app',
+    '*'
 ]
 
-CSRF_TRUSTED_ORIGIN = ["https://digitaltwin.hielkevanderwal.nl"]
 # Application definition
 
 INSTALLED_APPS = [
