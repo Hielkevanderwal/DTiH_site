@@ -1,1 +1,17 @@
 {% extends 'base.html' %}
+
+{% block title %}patient-overview{% endblock %}
+
+{% block page_content %}
+<div class="wrapper">
+    <div class="patient-list">
+        {% for p in user.docterof.patient.all %}
+        <div class="patient-item">
+            {{p}}
+            ADS: {{p.ads.latest.score|default:"N/A"}}
+            CDS: {{p.cds.latest.score|default:"N/A"}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock%}

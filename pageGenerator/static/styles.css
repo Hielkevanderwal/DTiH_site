@@ -60,7 +60,7 @@ button:hover{
 }
 
 .wrapper-login{
-    background-color: #AAA;
+    background-color: #666;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,4 +70,34 @@ button:hover{
     bottom: 0px;
     left: 0px;
     z-index: -10;
+}
+
+
+
+.wrapper-forms{
+    margin: 20px 20%;
+}
+
+.asteriskField{
+    color: var(--red)
+}
+
+.requiredField{
+    font-weight: bold;
+}
+
+#submit-id-submit{
+    float: right;
+    margin: 20px;
+    padding: 10px 30px;
+}
+
+
+.wrapper{
+    margin: 20px 20%;
+}
+
+.patient-item{
+    margin: 10px 0;
+    
 }

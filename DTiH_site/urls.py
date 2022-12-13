@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from pageGenerator.views import home_view, login_complete, overview_patient_view, overview_docter_view
+from pageGenerator.views import home_view, login_complete, overview_patient_view, overview_docter_view, CDSForm_view, ADSForm_view, uploadCSV_view
 
 urlpatterns = [
     path('', home_view, name= 'home'),
@@ -26,4 +26,9 @@ urlpatterns = [
 
     path('p/dashboard/', overview_patient_view),
     path('d/dashboard/', overview_docter_view),
+
+    # path('forms/<str:form_name>/', form_view),
+    path('forms/CDS/', CDSForm_view),
+    path('forms/ADS/', ADSForm_view),
+    path('forms/uploadCSV/', uploadCSV_view)
 ]
