@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'digitaltwin.hielkevanderwal.nl',
     'dtihsite-production.up.railway.app',
-    '*'
+    'localhost'
 ]
 
 # Application definition
