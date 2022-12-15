@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+CSRF_COOKIE_DOMAIN = ".hielkevanderwal.nl"
+
 # Application definition
 
 INSTALLED_APPS = [
