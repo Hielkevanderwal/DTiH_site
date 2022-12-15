@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_COOKIE_DOMAIN = ".hielkevanderwal.nl"
+CSRF_TRUSTED_ORIGINS = ['http://digitaltwin.hielkevanderwal.nl', 'https://digitaltwin.hielkevanderwal.nl']
 
 # Application definition
 
