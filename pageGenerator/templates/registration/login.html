@@ -4,7 +4,7 @@
 
 {% block page_content %}
 <div class="wrapper-login">
-  <form method="post">
+  <form method="post" action="/accounts/login/">
     {% csrf_token %}
     <table>
     {{ form.as_table }}
