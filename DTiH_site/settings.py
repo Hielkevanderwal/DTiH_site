@@ -136,6 +136,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "pageGenerator/static"),
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, PROJECT_NAME, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -143,6 +145,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGOUT_REDIRECT_URL = 'home'
-LOGIN_REDIRECT_URL = 'loginhandler'
+LOGIN_REDIRECT_URL = 'dashboard'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

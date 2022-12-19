@@ -1,42 +1,27 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseNotFound
 
-from .forms import ADSForm, CDSForm, Data_upload_form
+from django.contrib.auth.models import User
+
+from .forms import ADSForm, CDSForm, Data_upload_form, BMIForm
+from .models import DocterOf
+
 
 # Create your views here.
 def home_view(request):
-    context = {
-        "page_name": "home"
-    }
-    return render(request,"index.html",context)
+    return render(request,"index.html")
 
 @login_required
-def login_complete(request):
-    if(request.user.groups.filter(name='docters').exists()):
-        return redirect("/d/dashboard/")
+def dashboard_view(request):
+    if request.user in [d.docter for d in DocterOf.objects.all()]:
+        return render(request, "overview_docter.html")
 
-    return redirect("/p/dashboard/")
-
-@login_required
-def overview_docter_view(request):
-    print(request.user.ads.all())
-    context = {
-        "page_name": "dashboard"
-    }
-    return render(request, "overview_docter.html", context)
+    return render(request, "overview_patient.html")
 
 @login_required
-def overview_patient_view(request):
+def detailed_patient_view(request, user_id):
     context = {
-        "page_name": "dashboard"
-    }
-    return render(request, "overview_patient.html", context)
-
-@login_required
-def detailed_patient_view(request):
-    context = {
-        "page_name": "???"
+        "patient": User.objects.filter(id=user_id)[0]
     }
     return render(request, "detailed_docter.html", context)
 
@@ -61,18 +46,36 @@ def CDSForm_view(request):
             obj = form.save(commit=False)
             obj.user = request.user
             obj.save()
-        return redirect('loginhandler')
+        return redirect('dashboard')
     context = {"form": CDSForm}
     return render(request, "form_view.html", context)
 
 @login_required
-def uploadCSV_view(request):
+def BMIForm_view(request):
+    if request.POST:
+        form = BMIForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+        return redirect('dashboard')
+    context = {"form": BMIForm}
+    return render(request, "form_view.html", context)
+
+@login_required
+def uploadCSV_view(request, user_id = None):
+    
+    user_obj = User.objects.get(id = user_id) if user_id else request.user
+
     if request.POST:
             form = Data_upload_form(request.POST, request.FILES)
             if form.is_valid():
                 obj = form.save(commit=False)
-                obj.user = request.user
+                obj.user = user_obj
                 obj.save()
-            return redirect('loginhandler')
+            return redirect('dashboard')
     context = {"form": Data_upload_form}
     return render(request, "form_view.html", context)
+
+def formviewer_view(request):
+    return render(request, "formviewer.html")

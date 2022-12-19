@@ -2,7 +2,17 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
-from .models import Raw_ppg_data, CDSModel, ADSModel
+from .models import Raw_ppg_data, CDSModel, ADSModel, BMIModel
+
+class BMIForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.add_input(Submit('submit','Submit'))
+
+    class Meta:
+        model = BMIModel
+        fields = ['height','mass']
 
 class ADSForm(forms.ModelForm):
 

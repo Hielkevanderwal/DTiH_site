@@ -5,13 +5,58 @@
 {% block page_content %}
 <div class="wrapper">
     <div class="patient-list">
-        {% for p in user.docterof.patient.all %}
-        <div class="patient-item">
-            {{p}}
-            ADS: {{p.ads.latest.score|default:"N/A"}}
-            CDS: {{p.cds.latest.score|default:"N/A"}}
-        </div>
-        {% endfor %}
+        <table>
+            <th>
+                Patient
+            </th>
+            <th>
+                ADS
+            </th>
+            <th>
+                CDS
+            </th>
+            <th>
+                PPG
+            </th>
+            {% for p in user.docterof.patient.all %}
+            <tr>
+                <td>
+                    {{p}}
+                </td>
+                <td>
+                    {{p.ads.latest.score|default:"N/A"}}
+                </td>
+                <td>
+                    {{p.cds.latest.score|default:"N/A"}}
+                </td>
+                <td>
+                    {{p.processed_ppg_data.latest.score|default:"N/A"}}
+                </td>
+                <td rowspan="2">
+                    <a href="/patients/{{p.id}}"><button>
+                        More...
+                    </button></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    {{ p.ads.latest.created | date:'Y-m-d'}}
+                </td>
+                <td>
+                    {{ p.cds.latest.created | date:'Y-m-d'}}
+                </td>
+                <td>
+                    {{ p.ppg_data.latest.finished_time | date:'Y-m-d'}}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 {% endblock%}

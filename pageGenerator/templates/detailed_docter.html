@@ -1,1 +1,91 @@
 {% extends 'base.html' %}
+
+{% block page_content %}
+
+<div class="wrapper">
+    <table>
+        <th colspan="2" style="text-align:center;">
+            <h1>{{patient}}</h1>
+        </th>
+        <tr>
+            <th>
+                <h1>ADS</h1>
+            </th>
+            <th style="float:right;">
+                <a href="/forms/ADS"><button>ADS form</button></a>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Score
+            </th>
+        </tr>
+        {% for f in patient.ads.all %}
+        <tr>
+            <td>{{f.created}}</td><td>{{f.score}}</td>
+        </tr>
+        {% endfor %}
+        <th>
+            <h1>CDS</h1>
+        </th>
+        <th style="float:right;">
+            <a href="/forms/CDS"><button>CDS form</button></a>
+        </th>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Score
+            </th>
+        </tr>
+        {% for f in patient.cds.all %}
+        <tr>
+            <td>{{f.created}}</td><td>{{f.score}}</td>
+        </tr>
+        {% endfor %}
+        <th>
+            <h1>PPG</h1>
+        </th>
+        <th style="float:right;">
+            <a href="/patients/{{patient.id}}/upload"><button>Upload ppg data</button></a>
+        </th>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Score
+            </th>
+        </tr>
+        {% for f in patient.ppg_data.all %}
+        <tr>
+            <td>{{f.finished_time}}</td><td>{{f.score}}</td>
+        </tr>
+        {% endfor %}
+        <th>
+            <h1>Body mass index</h1>
+        </th>
+        <th style="float:right;">
+            <a href="/forms/BMI"><button>BMI form</button></a>
+        </th>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                BMI
+            </th>
+        </tr>
+        {% for f in patient.bmi.all %}
+        <tr>
+            <td>{{f.created}}</td><td>{{f.bmi}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
