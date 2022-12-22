@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-mn(7xr9#p=f&jyk)#ssj5kf%(xb@zy335n()3!me02j4sgxb(2
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'myppg.nl',
-    'myppg.tech',
+    'www.myppg.nl',
+    'www.myppg.tech',
     'digitaltwin.hielkevanderwal.nl',
     'dtihsite-production.up.railway.app',
     'localhost'
@@ -37,8 +37,8 @@ ALLOWED_HOSTS = [
 CSRF_COOKIE_DOMAIN = [".hielkevanderwal.nl", ".myppg.nl", ".myppg.tech"]
 CSRF_TRUSTED_ORIGINS = [
     'http://digitaltwin.hielkevanderwal.nl', 'https://digitaltwin.hielkevanderwal.nl',
-    'http://myppg.nl', 'https://myppg.nl',
-    'http://myppg.tech', 'https://myppg.tech'
+    'http://www.myppg.nl', 'https://www.myppg.nl',
+    'http://www.myppg.tech', 'https://www.myppg.tech'
 ]
 
 # Application definition
