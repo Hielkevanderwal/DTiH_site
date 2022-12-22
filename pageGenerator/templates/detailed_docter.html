@@ -12,7 +12,7 @@
                 <h1>ADS</h1>
             </th>
             <th style="float:right;">
-                <a href="/forms/ADS"><button>ADS form</button></a>
+                <a href="/forms/ADS/{{patient.id}}"><button>ADS form</button></a>
             </th>
         </tr>
         <tr>
@@ -25,14 +25,14 @@
         </tr>
         {% for f in patient.ads.all %}
         <tr>
-            <td>{{f.created}}</td><td>{{f.score}}</td>
+            <td><a href="{% url 'form_viewer_url' form_type='ADS' form_id=f.id %}">{{f.created}}</a></td><td>{{f.score}}</td>
         </tr>
         {% endfor %}
         <th>
             <h1>CDS</h1>
         </th>
         <th style="float:right;">
-            <a href="/forms/CDS"><button>CDS form</button></a>
+            <a href="/forms/CDS/{{patient.id}}"><button>CDS form</button></a>
         </th>
         <tr>
             <th>
@@ -44,14 +44,14 @@
         </tr>
         {% for f in patient.cds.all %}
         <tr>
-            <td>{{f.created}}</td><td>{{f.score}}</td>
+            <td><a href="{% url 'form_viewer_url' form_type='CDS' form_id=f.id %}">{{f.created}}</a></td><td>{{f.score}}</td>
         </tr>
         {% endfor %}
         <th>
             <h1>PPG</h1>
         </th>
         <th style="float:right;">
-            <a href="/patients/{{patient.id}}/upload"><button>Upload ppg data</button></a>
+            <a href="/ppg/uploadCSV/{{patient.id}}"><button>Upload ppg data</button></a>
         </th>
         <tr>
             <th>
@@ -63,7 +63,7 @@
         </tr>
         {% for f in patient.ppg_data.all %}
         <tr>
-            <td>{{f.finished_time}}</td><td>{{f.score}}</td>
+            <td><a href="/ppg/results/{{f.id}}/">{{f.finished_time}}</a></td><td>{{f.score}}</td>
         </tr>
         {% endfor %}
         <th>

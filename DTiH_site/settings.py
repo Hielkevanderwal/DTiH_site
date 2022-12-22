@@ -27,13 +27,19 @@ SECRET_KEY = 'django-insecure-mn(7xr9#p=f&jyk)#ssj5kf%(xb@zy335n()3!me02j4sgxb(2
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'myppg.nl',
+    'myppg.tech',
     'digitaltwin.hielkevanderwal.nl',
     'dtihsite-production.up.railway.app',
     'localhost'
 ]
 
-CSRF_COOKIE_DOMAIN = ".hielkevanderwal.nl"
-CSRF_TRUSTED_ORIGINS = ['http://digitaltwin.hielkevanderwal.nl', 'https://digitaltwin.hielkevanderwal.nl']
+CSRF_COOKIE_DOMAIN = [".hielkevanderwal.nl", ".myppg.nl", ".myppg.tech"]
+CSRF_TRUSTED_ORIGINS = [
+    'http://digitaltwin.hielkevanderwal.nl', 'https://digitaltwin.hielkevanderwal.nl',
+    'http://myppg.nl', 'https://myppg.nl',
+    'http://myppg.tech', 'https://myppg.tech'
+]
 
 # Application definition
 
@@ -48,6 +54,8 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'pageGenerator',
+    'lifestyleforms',
+    'ppg_analyser'
 ]
 
 MIDDLEWARE = [

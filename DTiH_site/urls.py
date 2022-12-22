@@ -17,24 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from pageGenerator.views import home_view, dashboard_view, CDSForm_view, ADSForm_view, uploadCSV_view, detailed_patient_view, BMIForm_view
+from pageGenerator.views import home_view, dashboard_view, detailed_patient_view
 
 urlpatterns = [
     path('', home_view, name= 'home'),
     path('admin/', admin.site.urls),
+
     path("accounts/", include("django.contrib.auth.urls")),
+    path("forms/", include("lifestyleforms.urls")),
+    path("ppg/", include("ppg_analyser.urls")),
 
     path('dashboard/', dashboard_view, name= 'dashboard'),
 
     path('patients/<int:user_id>', detailed_patient_view),
-
-    # path('forms/<str:form_name>/', form_view),
-    path('forms/CDS/', CDSForm_view),
-    path('forms/ADS/', ADSForm_view),
-    path('forms/BMI/', BMIForm_view),
-
-    path('forms/uploadCSV/', uploadCSV_view),
-    path('patients/<int:user_id>/upload/',uploadCSV_view)
 ] 
 
 urlpatterns += staticfiles_urlpatterns()
