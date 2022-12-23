@@ -20,6 +20,17 @@ class Data_upload_form(forms.ModelForm):
     )
 
 class ReadOnlyPPGForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs) 
+        self.helper = FormHelper(self)
+        self.helper.layout = (
+            Fieldset(
+                Field("bpm", disabled = True)
+            )
+        )
+
     class Meta:
         model = Processed_ppg_data
-        fields = "__all__" 
+        fields = "__all__"
+
+    

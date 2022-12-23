@@ -57,8 +57,8 @@ class Raw_ppg_data(models.Model):
 class Processed_ppg_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ppg_data", editable=False)
     raw_ppg_data_id = models.ForeignKey(Raw_ppg_data, on_delete=models.CASCADE, editable=False)
-    finished_time = models.DateTimeField(auto_now=True, editable=False,)
-    bpm = models.FloatField(blank=True, null=True)
+    finished_time = models.DateTimeField(auto_now=True)
+    bpm = models.FloatField(blank=True, null=True, )
     ibi = models.FloatField(blank=True, null=True)
     sdnn = models.FloatField(blank=True, null=True)
     sdsd = models.FloatField(blank=True, null=True)

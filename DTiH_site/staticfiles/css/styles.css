@@ -1,5 +1,3 @@
-
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -55,9 +53,6 @@ button:hover{
 
 
 
-.page_content{
-    
-}
 
 .wrapper-login{
     background-color: #666;
@@ -98,6 +93,14 @@ button:hover{
 }
 
 .patient-item{
-    margin: 10px 0;
-    
+    margin: 10px 0; 
+}
+
+
+table{
+    width: 100%;
+}
+
+tr{
+    height: 35px;
 }
