@@ -34,6 +34,11 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.myppg.tech",
+    "https://*.myppg.nl"
+]
+
 # Application definition
 
 INSTALLED_APPS = [
