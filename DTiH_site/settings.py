@@ -34,14 +34,6 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
-CSRF_COOKIE_DOMAIN = ["*.hielkevanderwal.nl", "*.myppg.nl", "*.myppg.tech", "localhost"]
-CSRF_TRUSTED_ORIGINS = [
-    'http://digitaltwin.hielkevanderwal.nl', 'https://digitaltwin.hielkevanderwal.nl',
-    'http://www.myppg.nl', 'https://www.myppg.nl',
-    'http://www.myppg.tech', 'https://www.myppg.tech',
-    'http://localhost', 'https://localhost'
-]
-
 # Application definition
 
 INSTALLED_APPS = [
