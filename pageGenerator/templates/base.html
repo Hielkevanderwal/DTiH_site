@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
+    <head> 
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
@@ -15,21 +15,7 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
     </head>
     <body>
-        <header>
-            <nav>
-                <ul class="nav__links">
-                    <li><a href="/">Home</a></li>
-                    {% if user.is_authenticated %}<li><a href="/dashboard/">Dashboard</a></li>{% endif %}
-                    <li><a>Contact</a></li>
-                    <li><a>Informatie</a></li>
-                    {% if user.is_superuser  %}<li><a href="/admin/">Administration</a></li>{% endif %}
-                </ul>
-            </nav>
-            {% if user.is_authenticated %}<a href="/accounts/logout/"><button>Uitloggen</button></a>{% endif %}
-            {% if not user.is_authenticated %}<a href="/accounts/login/"><button>Inloggen</button></a>{% endif %}
-        </header>
-
-
+        {% include 'header.html' %}
         <div class="page_content">
             {% block page_content %}
             <p>Ik hoor hier niet te zijn :)</p>

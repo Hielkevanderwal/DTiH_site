@@ -9,6 +9,9 @@ from .models import DocterOf
 def home_view(request):
     return render(request,"index.html")
 
+def info_view(request):
+    return render(request, "information.html")
+
 @login_required
 def dashboard_view(request):
     if request.user in [d.docter for d in DocterOf.objects.all()]:

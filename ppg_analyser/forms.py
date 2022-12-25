@@ -25,7 +25,29 @@ class ReadOnlyPPGForm(forms.ModelForm):
         self.helper = FormHelper(self)
         self.helper.layout = (
             Fieldset(
-                Field("bpm", disabled = True)
+                Field("bpm", disabled=True),
+                Field("bpm", disabled = False),
+                Field("ibi", disabled = True),
+                Field("sdnn", disabled = True),
+                Field("sdsd", disabled = True),
+                Field("rmssd", disabled = True),
+                Field("pnn20", disabled = True),
+                Field("pnn50", disabled = True),
+                Field("hr_mad", disabled = True),
+                Field("sd1", disabled = True),
+                Field("sd2", disabled = True),
+                Field("s", disabled = True),
+                Field("sd1sd2", disabled = True),
+                Field("breathingrate", disabled = True),
+                Field("vlf", disabled = True),
+                Field("lf", disabled = True),
+                Field("hf", disabled = True),
+                Field("lfhf", disabled = True),
+                Field("p_total", disabled = True),
+                Field("vlf_perc", disabled = True),
+                Field("hf_prec", disabled = True),
+                Field("lf_nu", disabled = True),
+                Field("hf_nu", disabled = True),
             )
         )
 

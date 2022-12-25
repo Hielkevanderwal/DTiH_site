@@ -68,8 +68,7 @@ button:hover{
 }
 
 
-
-.wrapper-forms{
+.page_content{
     margin: 20px 20%;
 }
 
@@ -87,15 +86,9 @@ button:hover{
     padding: 10px 30px;
 }
 
-
-.wrapper{
-    margin: 20px 20%;
-}
-
 .patient-item{
     margin: 10px 0; 
 }
-
 
 table{
     width: 100%;

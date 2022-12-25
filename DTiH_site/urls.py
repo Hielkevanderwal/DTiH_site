@@ -17,19 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from pageGenerator.views import home_view, dashboard_view, detailed_patient_view
+from pageGenerator import views
 
 urlpatterns = [
-    path('', home_view, name= 'home'),
+    path('', views.home_view, name= 'home'),
+
+    path('dashboard/', views.dashboard_view, name= 'dashboard'),
+    path('information/', views.info_view, name= 'information'),
+
     path('admin/', admin.site.urls),
 
     path("accounts/", include("django.contrib.auth.urls")),
     path("forms/", include("lifestyleforms.urls")),
     path("ppg/", include("ppg_analyser.urls")),
 
-    path('dashboard/', dashboard_view, name= 'dashboard'),
-
-    path('patients/<int:user_id>', detailed_patient_view),
+    path('patients/<int:user_id>', views.detailed_patient_view),
 ] 
 
 urlpatterns += staticfiles_urlpatterns()

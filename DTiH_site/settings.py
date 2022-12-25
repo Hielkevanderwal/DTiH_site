@@ -34,28 +34,30 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
-CSRF_COOKIE_DOMAIN = [".hielkevanderwal.nl", ".myppg.nl", ".myppg.tech"]
+CSRF_COOKIE_DOMAIN = ["*.hielkevanderwal.nl", "*.myppg.nl", "*.myppg.tech", "localhost"]
 CSRF_TRUSTED_ORIGINS = [
     'http://digitaltwin.hielkevanderwal.nl', 'https://digitaltwin.hielkevanderwal.nl',
     'http://www.myppg.nl', 'https://www.myppg.nl',
-    'http://www.myppg.tech', 'https://www.myppg.tech'
+    'http://www.myppg.tech', 'https://www.myppg.tech',
+    'http://localhost', 'https://localhost'
 ]
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'crispy_forms',
 
     'pageGenerator',
     'lifestyleforms',
-    'ppg_analyser'
+    'ppg_analyser',
+    'crispy_forms',
+
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
