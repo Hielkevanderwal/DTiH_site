@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
@@ -326,7 +328,7 @@ class ADSModel(models.Model):
     score = models.IntegerField(null=True,blank=True,editable=False)
 
 class CDSModel(models.Model):
-    Disagree_Choice = (("0", "Totally disagree"), ("1", "Somewhat disagree"), ("2", "Neither agree nor disagree"), ("3", "Somewhat agree"), ("4", "Fully agree"))
+    Disagree_Choice = (("1", "Totally disagree"), ("2", "Somewhat disagree"), ("3", "Neither agree nor disagree"), ("4", "Somewhat agree"), ("5", "Fully agree"))
 
     class Meta:
         get_latest_by = 'created'
@@ -342,10 +344,42 @@ class CDSModel(models.Model):
         self.score = 0
 
         for att in self._meta.get_fields():
-            if att.name in ['id', 'user', 'created', 'score']:
+            if att.name in ['id', 'user', 'created', 'score','q1','q2','q3']:
                 continue
             
             self.score += int(getattr(self,att.name))
+
+        q1_score = math.ceil(getattr(self, 'q1')/5)
+        if q1_score < 1:
+            self.score += 1
+        elif q1_score > 5:
+            self.score += 5
+        else:
+            self.score += q1_score
+
+        q2_score = getattr(self, 'q2')
+        if q2_score <=5:
+            self.score += 1
+        elif q2_score <= 10:
+            self.score += 2
+        elif q2_score <= 20:
+            self.score += 3
+        elif q2_score <= 29:
+            self.score += 4
+        else:
+            self.score += 5
+
+        q3_score = getattr(self, 'q3')
+        if q3_score <= 5:
+            self.score += 5
+        elif q3_score <=15:
+            self.score += 4
+        elif q3_score <=30:
+            self.score += 3
+        elif q3_score <= 60:
+            self.score += 2
+        else:
+            self.score += 1
 
         super(CDSModel, self).save(*args, **kwargs)
         ScoreModel.calculate_score(self.user)
@@ -373,11 +407,11 @@ class CDSModel(models.Model):
         max_length=20,
         verbose_name="For you, quitting smoking for good would be:", 
         choices=(
-            ("1","Impossible"),
-            ("2","Very difficult"),
+            ("5","Impossible"),
+            ("4","Very difficult"),
             ("3","Fairly difficult"),
-            ("4","Fairly easy"),
-            ("5","Very easy")
+            ("2","Fairly easy"),
+            ("1","Very easy")
         ),
         default = None,
     )
