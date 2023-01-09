@@ -24,7 +24,7 @@ PROJECT_NAME = "DTiH_site"
 SECRET_KEY = 'django-insecure-mn(7xr9#p=f&jyk)#ssj5kf%(xb@zy335n()3!me02j4sgxb(2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'www.myppg.nl',
