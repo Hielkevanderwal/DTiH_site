@@ -25,14 +25,15 @@ class ScoreModel(models.Model):
         print(ads, cds, bmi, ppg)
 
         if bmi and ads and cds and ppg:
-            print(patient_score(
+            scores = patient_score(
                 [bmi.bmi, 
                 ads.score,
                 cds.score,
                 ppg.rmssd if ppg.rmssd else 0,
                 ppg.pnn50 if ppg.pnn50 else 0,
                 ppg.lfhf if ppg.lfhf else 0 ]
-            ))
+            )
+            sm.value = scores[-1]
         sm.save()
 
     @staticmethod
