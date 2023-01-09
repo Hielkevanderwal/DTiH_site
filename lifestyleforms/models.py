@@ -26,7 +26,7 @@ class ADSModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, editable=False, related_name="ads")
     created = models.DateTimeField(auto_now_add = True, editable=False)
 
-    YN_Choice = (("0", "Yes"), ("1", "No"))
+    YN_Choice = (("0", "No"), ("1", "Yes"))
 
     class Meta:
         get_latest_by = 'created'

@@ -48,5 +48,6 @@ class DocterOf(models.Model):
 
 class AccesTo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    ADS = models.BooleanField(default=False)
-    CDS = models.BooleanField(default=False)
+    ADS = models.BooleanField(default=True)
+    CDS = models.BooleanField(default=True)
+    BMI = models.BooleanField(default=True)

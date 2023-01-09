@@ -7,6 +7,6 @@
             {% if user.is_superuser  %}<li><a href="/admin/">Administration</a></li>{% endif %}
         </ul>
     </nav>
-    {% if user.is_authenticated %}<a href="/accounts/logout/"><button>Uitloggen</button></a>{% endif %}
-    {% if not user.is_authenticated %}<a href="/accounts/login/"><button>Inloggen</button></a>{% endif %}
+    {% if user.is_authenticated %}<a href="/accounts/logout/"><button>Logout</button></a>{% endif %}
+    {% if not user.is_authenticated %}<a href="/accounts/login/"><button>Login</button></a>{% endif %}
 </header>
