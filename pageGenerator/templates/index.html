@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
 {% block page_content %}
-<h1>
+<img src="{% static 'img/logo.png' %}">
+<h3>
     “With the use of our website we want to improve the life quality of atrial fibrillation patients”
 </h1>
-<h2>
+<h4>
     “Using PPG recordings and lifestyle questionnaires, the website will calculate a risk score. Based on this risk score, an advice is given to the patient to improve their lifestyle. With this lifestyle advice, the patient can prevent surgical treatment by improving their lifestyle.”
-</h2>
-
+</h4>
 <p>
     “We are a team of five Biomedical Engineering students who chose to do the USE Digital Twin course. The course started with a camp to get to know each other and to choose a subject. Our team chose for the subject Heart Arrhythmia. We got three different contacts to help us with our project: our case owner, a clinical liaison and a company liaison. The case owner is Frans van de Vosse and is the owner of the two heart arrhythmia teams. Our clinical liaison is Lukas Dekker and helps us with the clinical side of the heart arrhythmia case. Our company liaison is Alex Serrarens and provided us with the FreeSense device.” 
 </p>

@@ -24,6 +24,20 @@ def category(factor,v1,v2,v3,v4,s0 = 0,s1 = 1,s2 = 2,s3 = 3,s4 = 4):
         
 #print(category(25,18.5,25,30,35,1,0))
 
+def calculate_patient_score(BMI, ADS, CDS, RMSSD, pNN50, LFHF):
+    BMI_score = category(BMI,18.5,25,30,35,1,0)*1.03
+    ADS_score = category(ADS,1,14,22,31)*1.23
+    CDS_score = category(CDS,1,14,22,31)*0.55
+
+    RMSSD_score = RMSSD*1.036
+    pNN50_score = pNN50*1.057
+    LF_HF_score = LFHF*0.509
+
+    PPG_score = (RMSSD_score + pNN50_score + LF_HF_score)*0.5/2.602
+    lifestyle_score = (BMI_score + ADS_score + CDS_score)*0.5/11.24
+
+    return PPG_score + lifestyle_score*100
+
 def patient_score(parameter_list):
     
     information = []

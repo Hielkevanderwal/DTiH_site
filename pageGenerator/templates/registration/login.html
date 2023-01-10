@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Login{% endblock %}
 
 {% block page_content %}
-<div class="wrapper-login">
+  <h2>Login</h2>
+  <p>No account yet <a href="/accounts/signup/" style='color:var(--blue)''>click here</a></p>
   <form method="post" action="/accounts/login/">
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <button type="submit">Log In</button>
+    {{ form|crispy }}
+    <button type="submit">Log in</button>
   </form>
-</div>
 {% endblock %}

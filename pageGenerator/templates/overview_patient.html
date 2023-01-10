@@ -2,12 +2,18 @@
 
 {% block page_content %}
 
-<h1>patient overview1</h1>
-<div class="">
+<h1>Hello {{patient}}</h1>
+<div>
+    {% autoescape off %}
+    {% for line in Risk_html %}
+    {{line}}
+    {% endfor %}
+    {% endautoescape %}
+</div>
+<div class="button_container">
     {% if user.accesto.ADS %}<a href="/forms/ADS/"><button>ADS form</button></a>{% endif %}
     {% if user.accesto.CDS %}<a href="/forms/CDS/"><button>CDS form</button></a>{% endif %}
     {% if user.accesto.BMI %}<a href="/forms/BMI/"><button>BMI form</button></a>{% endif %}
     <a href="/ppg/uploadCSV/"><button>upload PPG signal</button></a>
 </div>
-
 {% endblock %}

@@ -371,15 +371,15 @@ class CDSModel(models.Model):
 
         q3_score = getattr(self, 'q3')
         if q3_score <= 5:
-            self.score += 5
+            self.score += 1
         elif q3_score <=15:
-            self.score += 4
+            self.score += 2
         elif q3_score <=30:
             self.score += 3
         elif q3_score <= 60:
-            self.score += 2
+            self.score += 4
         else:
-            self.score += 1
+            self.score += 5
 
         super(CDSModel, self).save(*args, **kwargs)
         ScoreModel.calculate_score(self.user)

@@ -1,13 +1,15 @@
+import math
+
 from django.db import models
 from django.contrib.auth.models import User
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from ppg_analyser.digitaltwin.patient_individual import patient_score
+from ppg_analyser.digitaltwin.patient_individual import calculate_patient_score
 # Create your models here.
 
 class ScoreModel(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='ScoreModel')
     value = models.IntegerField(blank=True, null=True)
 
     @staticmethod
@@ -18,22 +20,12 @@ class ScoreModel(models.Model):
         ppg = user.ppg_data.last()
 
         try:
-            sm = user.scoremodel
+            sm = user.ScoreModel
         except ObjectDoesNotExist:
             sm = ScoreModel.objects.create(user = user)
 
-        print(ads, cds, bmi, ppg)
-
         if bmi and ads and cds and ppg:
-            scores = patient_score(
-                [bmi.bmi, 
-                ads.score,
-                cds.score,
-                ppg.rmssd if ppg.rmssd else 0,
-                ppg.pnn50 if ppg.pnn50 else 0,
-                ppg.lfhf if ppg.lfhf else 0 ]
-            )
-            sm.value = scores[-1]
+            sm.value = calculate_patient_score(bmi.bmi, ads.score, cds.score, ppg.rmssd, ppg.pnn50, ppg.lfhf)
         sm.save()
 
     @staticmethod
@@ -47,8 +39,14 @@ class DocterOf(models.Model):
     def patients(self):
         return ", ".join([str(p) for p in self.patient.all()])
 
+    def __str__(self):
+        return "Dr. {}".format(self.docter)
+
 class AccesTo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ADS = models.BooleanField(default=True)
     CDS = models.BooleanField(default=True)
     BMI = models.BooleanField(default=True)
+
+    def __str__(self):
+        return "Acces model {}".format(self.user)
