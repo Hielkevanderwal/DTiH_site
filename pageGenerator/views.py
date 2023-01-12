@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from ppg_analyser.digitaltwin.patient_individual import calculate_patient_score
 
-from .models import DocterOf
+from .models import DocterOf, AccesTo
 
 # Create your views here.
 class SignUpView(generic.CreateView):
@@ -64,6 +64,13 @@ def dashboard_view(request):
                 riskhtmls.append("<p>There is no indication that your lifestyle needs to change</p>")
 
             context["Risk_html"] = riskhtmls
+
+        try:
+            request.user.accesto
+        except ObjectDoesNotExist:
+            atm = AccesTo(request.user)
+
+            atm.save()
 
     return render(request, "overview_patient.html", context)
 
