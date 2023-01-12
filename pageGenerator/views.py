@@ -68,7 +68,7 @@ def dashboard_view(request):
         try:
             request.user.accesto
         except ObjectDoesNotExist:
-            atm = AccesTo(request.user)
+            atm = AccesTo(user = request.user)
 
             atm.save()
 

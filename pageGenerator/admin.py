@@ -8,7 +8,7 @@ class ScoreModelAdmin(admin.ModelAdmin):
 admin.site.register(ScoreModel, ScoreModelAdmin)
 
 class AccesToAdmin(admin.ModelAdmin):
-    list_display = ('user', 'ADS', 'CDS')
+    list_display = ('user', 'ADS', 'CDS', 'BMI')
 admin.site.register(AccesTo, AccesToAdmin)
 
 class DocterOfAdmin(admin.ModelAdmin):
