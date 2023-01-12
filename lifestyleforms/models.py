@@ -9,8 +9,8 @@ from pageGenerator.models import ScoreModel
 class BMIModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, editable=False, related_name = 'bmi')
     created = models.DateTimeField(auto_now=True, editable=False)
-    height = models.FloatField(verbose_name="height")
-    mass = models.FloatField(verbose_name="weight")
+    height = models.FloatField(verbose_name="height (m)")
+    mass = models.FloatField(verbose_name="weight (kg)")
     bmi = models.FloatField(editable=False)
 
     class Meta:
