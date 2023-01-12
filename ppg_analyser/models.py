@@ -1,3 +1,5 @@
+import math
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -15,9 +17,8 @@ class Raw_ppg_data(models.Model):
 
     def save(self, *args, **kwargs):
         super(Raw_ppg_data, self).save(*args, **kwargs)
-        ScoreModel.calculate_score(self.user)
         if not self.processed:
-            self.process_ppg()
+            self.process_ppg()        
 
     def process_ppg(self):
         ppg_signal = read_csv(self.csv_file.path)
@@ -50,11 +51,20 @@ class Raw_ppg_data(models.Model):
             lf_nu = measurements['lf_nu'],
             hf_nu = measurements['hf_nu'],
         )
-        ppg_obj.save()
         self.processed = True
         self.save()
 
+        ppg_obj.save()
+
 class Processed_ppg_data(models.Model):
+
+    def save(self, *args, **kwargs):
+        self.lfhf = 0 if math.isnan(self.lfhf) else self.lfhf
+        self.pnn50 = 0 if math.isnan(self.pnn50) else self.pnn50
+        self.rmssd = 0 if math.isnan(self.rmssd) else self.rmssd
+        super(Processed_ppg_data, self).save(*args, **kwargs)
+        ScoreModel.calculate_score(self.user)
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ppg_data", editable=False)
     raw_ppg_data_id = models.ForeignKey(Raw_ppg_data, on_delete=models.CASCADE, editable=False)
     finished_time = models.DateTimeField(auto_now=True)

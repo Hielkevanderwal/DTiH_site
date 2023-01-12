@@ -6,4 +6,7 @@ class RawPpgDataAdmin(admin.ModelAdmin):
     list_display = ('user', 'created', 'processed')
 admin.site.register(Raw_ppg_data, RawPpgDataAdmin)
 
-admin.site.register(Processed_ppg_data)
+class ProccesedPPGAdmin(admin.ModelAdmin):
+    list_display = ('user', 'rmssd', 'pnn50', 'lfhf')
+
+admin.site.register(Processed_ppg_data, ProccesedPPGAdmin)
