@@ -65,12 +65,12 @@ def dashboard_view(request):
 
             context["Risk_html"] = riskhtmls
 
-        try:
-            request.user.accesto
-        except ObjectDoesNotExist:
-            atm = AccesTo(user = request.user)
+    try:
+        request.user.accesto
+    except ObjectDoesNotExist:
+        atm = AccesTo(user = request.user)
 
-            atm.save()
+        atm.save()
 
     return render(request, "overview_patient.html", context)
 
