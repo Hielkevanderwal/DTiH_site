@@ -23,7 +23,7 @@
                 Score
             </th>
         </tr>
-        {% for f in patient.ads.all %}
+        {% for f in patient.ads.all reversed %}
         <tr>
             <td><a href="{% url 'form_viewer_url' form_type='ADS' form_id=f.id %}">{{f.created}}</a></td><td>{{f.score}}</td>
         </tr>
@@ -42,7 +42,7 @@
                 Score
             </th>
         </tr>
-        {% for f in patient.cds.all %}
+        {% for f in patient.cds.all reversed %}
         <tr>
             <td><a href="{% url 'form_viewer_url' form_type='CDS' form_id=f.id %}">{{f.created}}</a></td><td>{{f.score}}</td>
         </tr>
@@ -58,10 +58,10 @@
                 Date
             </th>
             <th>
-                Score
+                
             </th>
         </tr>
-        {% for f in patient.ppg_data.all %}
+        {% for f in patient.ppg_data.all reversed %}
         <tr>
             <td><a href="/ppg/results/{{f.id}}/">{{f.finished_time}}</a></td><td>{{f.score}}</td>
         </tr>
@@ -80,9 +80,9 @@
                 BMI
             </th>
         </tr>
-        {% for f in patient.bmi.all %}
+        {% for f in patient.bmi.all reversed %}
         <tr>
-            <td>{{f.created}}</td><td>{{f.bmi}}</td>
+            <td>{{f.created}}</td><td>{{f.bmi|floatformat:1}}</td>
         </tr>
         {% endfor %}
     </table>

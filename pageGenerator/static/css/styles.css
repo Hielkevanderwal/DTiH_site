@@ -89,3 +89,7 @@ tr{
 .button_container a{
     margin: 5px
 }
+
+td a{
+    color: black;
+}
